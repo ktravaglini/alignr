@@ -19,14 +19,15 @@ RUN pip install numpy
 RUN pip install HTseq
 
 # Install SAMTOOLS
+RUN cd ~
 RUN wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
 RUN tar xfv samtools-1.9.tar.bz2
 RUN mkdir programs
 RUN cd samtools-1.9
-RUN ./configure --prefix=/home/ec2-user/programs
+RUN ./configure --prefix=~/programs
 RUN make
 RUN make install
-RUN export PATH=/home/ec2-user/programs/bin:$PATH
+RUN export PATH=~/programs/bin:$PATH
 
 # Install STAR
 RUN cd ~

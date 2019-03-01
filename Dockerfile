@@ -19,7 +19,7 @@ RUN pip install numpy
 RUN pip install HTseq
 
 # Install SAMTOOLS
-RUN wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2 ~/samtools-1.9.tar.bz2
+RUN wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2 -O ~/samtools-1.9.tar.bz2
 RUN tar xfv ~/samtools-1.9.tar.bz2
 RUN mkdir ~/programs
 RUN cd ~/samtools-1.9 && ./configure --prefix=~/programs && make && make install

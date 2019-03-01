@@ -22,7 +22,7 @@ RUN pip install HTseq
 RUN wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2 -O ~/samtools-1.9.tar.bz2
 RUN cd ~ && tar xfv ~/samtools-1.9.tar.bz2
 RUN mkdir ~/programs
-RUN cd ~/samtools-1.9 && ./configure --prefix=~/programs && make && make install
+RUN cd ~/samtools-1.9 && ./configure --prefix=programs && make && make install
 RUN export PATH=~/programs/bin:$PATH
 
 # Install STAR

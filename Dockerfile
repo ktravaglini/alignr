@@ -12,5 +12,3 @@ RUN yum install -y tar
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
 RUN bash ~/miniconda.sh -b -p $HOME/miniconda
 RUN export PATH="$HOME/miniconda/bin:$PATH"
-
-CMD ['/bin/bash']

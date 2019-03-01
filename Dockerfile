@@ -12,12 +12,11 @@ RUN yum install -y tar
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
 RUN bash ~/miniconda.sh -b -p $HOME/miniconda
 RUN export PATH="$HOME/miniconda/bin:$PATH"
-RUN pip install --user awscli-cwlogs
-RUN pip install --user aegea
+RUN pip install aegea
 
 # Install HTSeq
-RUN pip install --user numpy
-RUN pip install --user HTseq
+RUN pip install numpy
+RUN pip install HTseq
 
 # Install SAMTOOLS
 RUN wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2

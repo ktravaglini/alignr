@@ -19,24 +19,19 @@ RUN pip install numpy
 RUN pip install HTseq
 
 # Install SAMTOOLS
-RUN cd ~
-RUN wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2
-RUN tar xfv samtools-1.9.tar.bz2
-RUN mkdir programs
-RUN cd samtools-1.9
-RUN ./configure --prefix=~/programs
-RUN make
-RUN make install
+RUN wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2 ~/samtools-1.9.tar.bz2
+RUN tar xfv ~/samtools-1.9.tar.bz2
+RUN mkdir ~/programs
+RUN cd ~/samtools-1.9 && ./configure --prefix=~/programs && make && make install
 RUN export PATH=~/programs/bin:$PATH
 
 # Install STAR
-RUN cd ~
-RUN wget https://github.com/alexdobin/STAR/archive/2.7.0e.tar.gz
-RUN tar -xzf 2.7.0e.tar.gz
-RUN cp STAR-2.7.0e/bin/Linux_x86_64/* programs/bin/
+RUN wget https://github.com/alexdobin/STAR/archive/2.7.0e.tar.gz -O ~/2.7.0e.tar.gz
+RUN tar -xzf ~/2.7.0e.tar.gz
+RUN cp ~/STAR-2.7.0e/bin/Linux_x86_64/* ~/programs/bin/
 
 # Cleanup
-RUN rm -fr *tar*
-RUN rm -fr miniconda.sh
-RUN rm -fr samtools-1.9/
-RUN rm -fr STAR-2.7.0e/
+RUN rm -fr ~/*tar*
+RUN rm -fr ~/miniconda.sh
+RUN rm -fr ~/samtools-1.9/
+RUN rm -fr ~/STAR-2.7.0e/

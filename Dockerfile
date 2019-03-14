@@ -16,7 +16,8 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     rm ~/miniconda.sh && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc
+    echo "conda activate base" >> ~/.bashrc && \
+    echo "PATH=/opt/conda/bin/:$PATH" >> ~/.bashrc
 
 RUN conda config --set always_yes yes --set changeps1 no
 RUN conda update -q conda
@@ -26,6 +27,7 @@ RUN conda config --add channels bioconda
 RUN conda install -n root _license
 
 RUN conda create --name utilities-env python=3.6 pip
+RUN /bin/bash -c "source activate utilities-env"
 RUN conda install samtools
 RUN conda install awscli-cwlogs
 RUN pip install aegea

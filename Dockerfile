@@ -9,7 +9,7 @@ MAINTAINER ktrav@stanford.edu
 # Add packages, update image, and clear cache
 RUN apt-get update
 RUN apt-get install -y apt-utils 
-RUN apt-get install -y build-essential wget zip unzip bzip2 git zlib1g-dev pkg-config make libbz2-dev python-pip libncurses-dev liblzma-dev
+RUN apt-get install -y build-essential wget zip unzip bzip2 git zlib1g-dev pkg-config make libbz2-dev python-pip libncurses-dev liblzma-dev pigz
 
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
@@ -26,18 +26,17 @@ RUN conda config --add channels bioconda
 RUN conda install -n root _license
 
 RUN conda create --name utilities-env python=3.6 pip
-RUN /bin/bash -c "source activate utilities-env"
 RUN conda install samtools
 RUN conda install awscli-cwlogs
 RUN pip install aegea
 
 # Install STAR
-RUN wget https://github.com/alexdobin/STAR/archive/2.6.1d.tar.gz -O ~/2.6.1d.tar.gz
+RUN wget --quiet https://github.com/alexdobin/STAR/archive/2.6.1d.tar.gz -O ~/2.6.1d.tar.gz
 RUN cd ~ && tar -xzf ~/2.6.1d.tar.gz
 RUN cp ~/STAR-2.6.1d/bin/Linux_x86_64/* /usr/local/bin
 
 # Install SKEWER
-RUN wget http://downloads.sourceforge.net/project/skewer/Binaries/skewer-0.2.2-linux-x86_64 -O /usr/local/bin/skewer
+RUN wget --quiet http://downloads.sourceforge.net/project/skewer/Binaries/skewer-0.2.2-linux-x86_64 -O /usr/local/bin/skewer
 RUN chmod +x /usr/local/bin/skewer
 
 # Cleanup
